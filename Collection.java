@@ -1,3 +1,11 @@
+/*
+202420-CEN-3024C-24668
+Albert Gonzalez
+Collection Class
+This may be doing more than it should. It 'collects' the books from
+the collection.txt file and updates it. Converts the file into an
+list of 'Books' which is what the user manipulates until it's saved.
+*/
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
@@ -15,6 +23,10 @@ public class Collection {
         collectBooks();
     }
 
+    /*
+    addBook() takes in the books title and author and assigns it an ID. It is then pushed to the collections list.
+    It has no return value, but outputs a response for the user.
+     */
     public void addBook(String title, String Author) throws IOException {
         Book book = new Book(lastUsedID++, title, Author);
         bookCollection.add(book);
@@ -22,6 +34,10 @@ public class Collection {
         saveCollection();
     }
 
+    /*
+    dropBook() takes an ID which it uses to find a book from the collections list and remove it.
+    It has no return value, but outputs a response for the user.
+     */
     public void dropBook(int id) throws IOException {
         for(Book book : bookCollection) {
             if(book.id == id) {
@@ -32,12 +48,21 @@ public class Collection {
         saveCollection();
     }
 
+    /*
+    printBookList() displays the collection of books to the user.
+    It has no return value, but outputs a response for the user.
+     */
     public void printBookList() {
         for(Book book : bookCollection) {
-            System.out.println(book.getId() + ", " + book.getTitle() + ", " + book.getAuthor());
+            System.out.println(book.id + ", " + book.title + ", " + book.author);
         }
     }
 
+    /*
+    collectBooks() reads the collections.txt file, converts it into a list of books
+    assigned to the 'library' variable, and updates the 'lastUsedID' variable.
+    It has no return value.
+     */
     public void collectBooks() throws IOException {
         BufferedReader saveFile = null;
 
@@ -60,6 +85,10 @@ public class Collection {
         }
     }
 
+    /*
+    saveCollection() overwrites the collection.txt with list of books(library).
+    It has no return value.
+     */
     public void saveCollection() throws IOException {
         try{
             Writer collectionUpdater = new FileWriter("collection.txt", false);
