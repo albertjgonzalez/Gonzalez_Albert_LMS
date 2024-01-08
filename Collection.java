@@ -1,10 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,23 +13,23 @@ public class Collection {
 
     Collection() throws IOException  {
         collectBooks();
-        System.out.println(lastUsedID);
     }
 
-    public void addBook(String title, String Author) {
-        Book book = new Book(lastUsedID, title, Author);
-        lastUsedID++;
+    public void addBook(String title, String Author) throws IOException {
+        Book book = new Book(lastUsedID++, title, Author);
         bookCollection.add(book);
         System.out.println(book.title + " by " + book.author + " has been added to your collection.");
+        saveCollection();
     }
 
-    public void dropBook(int id) {
+    public void dropBook(int id) throws IOException {
         for(Book book : bookCollection) {
             if(book.id == id) {
                 bookCollection.remove(book);
                 System.out.println(book.title + " by " + book.author + " has been removed from your collection.");
             }
         }
+        saveCollection();
     }
 
     public void printBookList() {
