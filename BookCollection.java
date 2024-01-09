@@ -15,12 +15,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-public class Collection {
+public class BookCollection {
     public int lastUsedID = 0;
     private List<Book> bookCollection = new ArrayList<>();
 
-    Collection() throws IOException  {
+    BookCollection() throws IOException  {
         collectBooks();
+        System.out.println(lastUsedID);
     }
 
     /*
@@ -28,7 +29,8 @@ public class Collection {
     It has no return value, but outputs a response for the user.
      */
     public void addBook(String title, String Author) throws IOException {
-        Book book = new Book(lastUsedID++, title, Author);
+        lastUsedID++;
+        Book book = new Book(lastUsedID, title, Author);
         bookCollection.add(book);
         System.out.println(book.title + " by " + book.author + " has been added to your collection.");
         saveCollection();
@@ -90,15 +92,16 @@ public class Collection {
     It has no return value.
      */
     public void saveCollection() throws IOException {
-        try{
-            Writer collectionUpdater = new FileWriter("collection.txt", false);
+        Writer collectionUpdater = null;
+        try {
+            collectionUpdater = new FileWriter("collection.txt", false);
             for (Book book : bookCollection) {
                 collectionUpdater.write(book.id + "," + book.title + "," + book.author + "\n");
             }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
             collectionUpdater.close();
         }
-        catch(Exception ex){  }
-        finally{  }
-
     }
 }
