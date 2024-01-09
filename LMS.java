@@ -52,7 +52,6 @@ public class LMS {
                     System.out.println(invalidResponse);
             }
         }
-
-
+        System.out.println("GoodBye. :)");
     }
 }

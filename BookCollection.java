@@ -3,7 +3,7 @@
 Albert Gonzalez
 Collection Class
 This may be doing more than it should. It 'collects' the books from
-the collection.txt file and updates it. Converts the file into an
+the collection.txt file and updates it. Converts the file into a
 list of 'Books' which is what the user manipulates until it's saved.
 */
 import java.util.ArrayList;
