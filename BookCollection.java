@@ -20,8 +20,7 @@ public class BookCollection {
     private List<Book> bookCollection = new ArrayList<>();
 
     BookCollection() throws IOException  {
-        collectBooks();
-        System.out.println(lastUsedID);
+        
     }
 
     /*
@@ -65,11 +64,12 @@ public class BookCollection {
     assigned to the 'library' variable, and updates the 'lastUsedID' variable.
     It has no return value.
      */
-    public void collectBooks() throws IOException {
+    public void collectBooks(String fileLocation) throws IOException {
+        System.out.println("collecting books");
         BufferedReader saveFile = null;
 
         try {
-            saveFile = new BufferedReader(new FileReader("collection.txt"));
+            saveFile = new BufferedReader(new FileReader(fileLocation));
             String line = null;
 
             while((line = saveFile.readLine()) != null) {

@@ -18,8 +18,7 @@ public class LMS {
         BookCollection bookCollection = new BookCollection();
 
         String welcomeMessage = "\n \nWelcome to the Orange County LMS.\n \n";
-        String instructions = "Please type in one of the following options:\n \n" +
-                            "-Add Book \n-Remove Book \n-View Current Collection \n-Quit \n";
+        String instructions = "Please type in data file location:  ";
         String invalidResponse = "This response is invalid.\n";
 
         boolean appRunning = true;
@@ -29,8 +28,9 @@ public class LMS {
             Scanner sc = new Scanner(System.in);
             System.out.println(instructions);
             String userResponse = sc.nextLine();
+            bookCollection.collectBooks(userResponse);
             
-            }
+            
         }
         System.out.println("GoodBye. :)");
     }
