@@ -17,7 +17,7 @@ public class LMS {
 
         BookCollection bookCollection = new BookCollection();
 
-        String welcomeMessage = "\n \nWelcome the Orange County LMS.\n \n";
+        String welcomeMessage = "\n \nWelcome to the Orange County LMS.\n \n";
         String instructions = "Please type in one of the following options:\n \n" +
                             "-Add Book \n-Remove Book \n-View Current Collection \n-Quit \n";
         String invalidResponse = "This response is invalid.\n";
@@ -29,27 +29,7 @@ public class LMS {
             Scanner sc = new Scanner(System.in);
             System.out.println(instructions);
             String userResponse = sc.nextLine();
-            switch (userResponse) {
-                case "Add Book":
-                    System.out.println("Enter Book Title:\n");
-                    String title = sc.nextLine();
-                    System.out.println("Enter Author's Name:\n");
-                    String author = sc.nextLine();
-                    bookCollection.addBook(title, author);
-                    break;
-                case "Remove Book":
-                    System.out.println("Enter Book ID:\n");
-                    int iD = Integer.parseInt(sc.nextLine());
-                    bookCollection.dropBook(iD);
-                    break;
-                case "View Current Collection":
-                    bookCollection.printBookList();
-                    break;
-                case "Quit":
-                    appRunning = false;
-                    break;
-                default:
-                    System.out.println(invalidResponse);
+            
             }
         }
         System.out.println("GoodBye. :)");
