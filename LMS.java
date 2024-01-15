@@ -9,12 +9,14 @@ the application. I use a switch statement to determine the applications response
 This needs to broken down some more.
 */
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Scanner;
 
 public class LMS {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
 
+        DatabaseService db = new DatabaseService("books.db");
         BookCollection bookCollection = new BookCollection();
 
         String welcomeMessage = "\n \nWelcome to the Orange County LMS.\n \n";
@@ -29,6 +31,8 @@ public class LMS {
             System.out.println(instructions);
             String userResponse = sc.nextLine();
             bookCollection.collectBooks(userResponse);
+            bookCollection.printBookList();
+            appRunning = false;
             
             
         }
