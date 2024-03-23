@@ -7,6 +7,7 @@ the collection.txt file and updates it. Converts the file into a
 list of 'Books' which is what the user manipulates until it's saved.
 */
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -40,12 +41,72 @@ public class BookCollection {
     It has no return value, but outputs a response for the user.
      */
     public void dropBook(int id) throws IOException {
-        for(Book book : bookCollection) {
+        Iterator<Book> iterator = bookCollection.iterator();
+        while(iterator.hasNext()) {
+            Book book = iterator.next();
             if(book.id == id) {
-                bookCollection.remove(book);
+                iterator.remove();
                 System.out.println(book.title + " by " + book.author + " has been removed from your collection.");
+                saveCollection();
+                return;
             }
         }
+        System.out.println("No book found with ID: " + id);
+    }
+
+    /*
+    This is the same method as above, instead it use the book title
+     */
+    public void dropBook(String title) throws IOException {
+        Iterator<Book> iterator = bookCollection.iterator();
+        boolean found = false;
+        while(iterator.hasNext()) {
+            Book book = iterator.next();
+            if(book.title.equalsIgnoreCase(title)) {
+                iterator.remove();
+                System.out.println(book.title + " by " + book.author + " has been removed from your collection.");
+                found = true;
+                break; // If you expect multiple books with the same title and want to remove all, remove this break statement.
+            }
+        }
+        if (found) {
+            saveCollection();
+        } else {
+            System.out.println("No book found with title: " + title);
+        }
+    }
+    /*
+    checkOut() takes a book title which it uses to find a book from the collections list and remove it.
+    It has no return value, but outputs a response for the user.
+    */
+    public void checkOut(String title) throws IOException {
+        Iterator<Book> iterator = bookCollection.iterator();
+        boolean found = false;
+        while(iterator.hasNext()) {
+            Book book = iterator.next();
+            if(book.title.equalsIgnoreCase(title)) {
+                iterator.remove();
+                System.out.println(book.title + " by " + book.author + " has been removed from your collection.");
+                found = true;
+                break; // If you expect multiple books with the same title and want to remove all, remove this break statement.
+            }
+        }
+        if (found) {
+            saveCollection();
+        } else {
+            System.out.println("No book found with title: " + title);
+        }
+    }
+
+    /*
+    checkIn() takes a book title and Author which it uses to add a book to the collections list.
+    It has no return value, but outputs a response for the user.
+    */
+    public void checkIn(String title, String Author) throws IOException {
+        lastUsedID++;
+        Book book = new Book(lastUsedID, title, Author);
+        bookCollection.add(book);
+        System.out.println(book.title + " by " + book.author + " has been added to your collection.");
         saveCollection();
     }
 
