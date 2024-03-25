@@ -18,10 +18,10 @@ import java.io.Writer;
 
 public class BookCollection {
     public int lastUsedID = 0;
-    private List<Book> bookCollection = new ArrayList<>();
+    List<Book> bookCollection = new ArrayList<>();
 
     BookCollection() throws IOException  {
-        
+
     }
 
     /*
@@ -30,7 +30,7 @@ public class BookCollection {
      */
     public void addBook(String title, String Author) throws IOException {
         lastUsedID++;
-        Book book = new Book(lastUsedID, title, Author);
+        Book book = new Book(lastUsedID, title, Author, null, null);
         bookCollection.add(book);
         System.out.println(book.title + " by " + book.author + " has been added to your collection.");
         saveCollection();
@@ -97,14 +97,13 @@ public class BookCollection {
             System.out.println("No book found with title: " + title);
         }
     }
-
     /*
     checkIn() takes a book title and Author which it uses to add a book to the collections list.
     It has no return value, but outputs a response for the user.
     */
     public void checkIn(String title, String Author) throws IOException {
         lastUsedID++;
-        Book book = new Book(lastUsedID, title, Author);
+        Book book = new Book(lastUsedID, title, Author, null, null);
         bookCollection.add(book);
         System.out.println(book.title + " by " + book.author + " has been added to your collection.");
         saveCollection();
@@ -139,11 +138,11 @@ public class BookCollection {
 
                 if(bookID>lastUsedID) lastUsedID = bookID;
 
-                Book newbook = new Book(bookID, bookDetails[1],bookDetails[2]);
+                Book newbook = new Book(bookID, bookDetails[1],bookDetails[2], null, null);
                 bookCollection.add(newbook);
-            }   
-        } 
-        catch(FileNotFoundException ex) { System.out.println(ex); } 
+            }
+        }
+        catch(FileNotFoundException ex) { System.out.println(ex); }
         finally { if(saveFile != null) {saveFile.close();}
         }
     }

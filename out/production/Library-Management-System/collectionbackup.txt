@@ -1,0 +1,3 @@
+1,To Kill a Mockingbird,Harper Lee,null,null
+2,1984,George Orwell,null,null
+3,The Great Gatsby,F. Scott Fitzgerald,null.null
